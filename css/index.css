@@ -1,40 +1,37 @@
 /* Defaults */
 :root {
-	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family: 'Signika Negative', system-ui, sans-serif;
 	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
 }
 
 /* Theme colors */
 :root {
+	--color-white: #fff;
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #C0C0C0;
-	--color-gray-90: #333;
+	--color-gray-90: #1E1E1E;
+	--color-teal-dull: #2ACDDA;
+	--color-teal-bright: #00F6FE;
+	--color-citron: #E7F33B;
+	--color-magenta: #C100F3;
 
-	--background-color: #fff;
+	--background-color: var(--color-gray-90);
 
-	--text-color: var(--color-gray-90);
-	--text-color-link: #082840;
-	--text-color-link-active: #5f2b48;
-	--text-color-link-visited: #17050F;
+	--text-color: var(--color-white);
+	/* todo: check contrast */
+	--text-color-link: var(--color-teal-dull); 
+	--text-color-link-active: var(--color-teal-bright);
+	--text-color-link-visited: var(--color-teal-dull);
 
 	--syntax-tab-size: 2;
+
+	--border-radius: 2rem;
+	--base-font-size: 1rem; /* 16px */
+	--font-size-large: 1.125rem; /* 18px */
+	--font-size-xlarge: 1.5rem; 
+	--font-size-xxlarge: 2.5rem;
+	--font-size-small: 0.875rem; /* 14px */
 }
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-gray-20: #e0e0e0;
-		--color-gray-50: #C0C0C0;
-		--color-gray-90: #dad8d8;
-
-		/* --text-color is assigned to --color-gray-_ above */
-		--text-color-link: #1493fb;
-		--text-color-link-active: #6969f7;
-		--text-color-link-visited: #a6a6f8;
-
-		--background-color: #15202b;
-	}
-}
-
 
 /* Global stylesheet */
 * {
@@ -45,19 +42,50 @@
 	navigation: auto;
 }
 
+/* Containers */
 html,
 body {
 	padding: 0;
 	margin: 0 auto;
 	font-family: var(--font-family);
+	font-weight: light;
 	color: var(--text-color);
 	background-color: var(--background-color);
 }
 html {
 	overflow-y: scroll;
 }
+
 body {
+	max-width: 45em;
+	position: relative;
+	overflow: hidden;
+}
+
+.container {
+	/* display: grid; */
 	max-width: 40em;
+	margin: auto;
+	margin-bottom: 3rem;
+}
+
+.container-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1rem 2rem;
+	align-items: center;
+	max-width: 40em;
+	margin: auto;
+	margin-bottom: 3rem;
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+
+main :first-child {
+	margin-top: 0;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -92,11 +120,31 @@ iframe {
 	aspect-ratio: 16/9;
 }
 
+/* Typography */
+h2,
+h3 { 
+	font-weight: 100;
+	text-transform: uppercase;
+	span {
+		font-weight: bold;
+		display: block;
+	}
+}
+
+h2 {
+	font-size: var(--font-size-xxlarge);
+	margin-bottom: 0.5rem;
+}
+
 p:last-child {
 	margin-bottom: 0;
 }
 p {
 	line-height: 1.5;
+	font-weight: 100;
+	font-size: var(--base-font-size);
+	/* todo: change max-width value to clamp when I can look up syntax */
+	max-width: 30em; 
 }
 
 li {
@@ -112,18 +160,6 @@ a[href]:visited {
 a[href]:hover,
 a[href]:active {
 	color: var(--text-color-link-active);
-}
-
-main,
-footer {
-	padding: 1rem;
-}
-main :first-child {
-	margin-top: 0;
-}
-
-header {
-	border-bottom: 1px dashed var(--color-gray-20);
 }
 
 #skip-link {
@@ -191,6 +227,38 @@ code {
 	word-break: break-all;
 }
 
+/* Forms */
+
+button,
+.button {
+	background-color: var(--color-citron);
+	color: var(--color-gray-90);
+	padding: 0.5rem 1rem;
+	text-transform: uppercase;
+	border-radius: var(--border-radius);
+	border: 0;
+	box-shadow: none;
+	font-weight: 500;
+	&:hover, 
+	&:active {
+		background-color: var(--color-teal-bright);
+		/* Todo: little fade between colors as transition when I can look up syntax */
+	}
+}
+
+.contact {
+	/* display: grid; */
+	input {
+		padding: 0.75rem 1rem;
+		border-radius: 100px 0 0 100px;
+		border: none;
+	}
+	button {
+		padding: 0.75rem 1rem;
+		border-radius: 0 100px 100px 0;
+	}
+}
+
 /* Header */
 header {
 	display: flex;
@@ -200,14 +268,68 @@ header {
 	align-items: center;
 	padding: 1em;
 }
-.home-link {
-	flex-grow: 1;
-	font-size: 1em; /* 16px /16 */
-	font-weight: 700;
+
+header img {
+	@media screen and (min-width: 768px){
+		max-width: 40%;
+	}
 }
-.home-link:link:not(:hover) {
-	text-decoration: none;
+
+/* Homepage centered list */
+
+.circle {
+	/* clip-path: circle(50% at 80%); */
+	background: var(--color-teal-bright);
+	border-radius: 100%;
+	position: absolute;
+	border: 50px solid var(--color-magenta);
+	width: 500px;
+	height: 500px;
+	top: -20%;
+	right: -30%;
+	/* z-index: -1; */
 }
+.circle-small {
+	background-color: var(--color-teal-dull);
+	border-radius: 100%;
+	position: absolute;	
+	border: 50px solid var(--color-citron);
+	width: 300px;
+	height: 300px;
+	top: 5%;
+	right: -20%;
+}
+
+.icon-list--centered {
+	max-width: 30em;
+	margin: auto;
+	list-style: none;
+	li {
+		margin-bottom: 2rem;
+		position: relative;
+		&:before {
+			content: "";
+			display: inline-block;
+			width: 4.5rem;
+			height: 4.5rem;
+			background-image: url('img/logo-icon.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin-right: 0.5rem;
+			position: absolute;
+			left: -6rem;
+		}
+	}
+	h3 {
+		margin-bottom: 0.5rem;
+	}
+	p {
+		margin-top: 0;
+	}
+}
+
+
+/* 11ty defaults -- Not currently used */
 
 /* Nav */
 .nav {
