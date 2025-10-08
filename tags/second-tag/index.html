@@ -291,28 +291,29 @@ header img {
 }
 
 /* Homepage centered list */
-
-.circle {
-	/* clip-path: circle(50% at 80%); */
-	background: var(--color-teal-bright);
-	border-radius: 100%;
-	position: absolute;
-	border: 50px solid var(--color-magenta);
-	width: 500px;
-	height: 500px;
-	top: -20%;
-	right: -30%;
-	/* z-index: -1; */
-}
-.circle-small {
-	background-color: var(--color-teal-dull);
-	border-radius: 100%;
-	position: absolute;	
-	border: 50px solid var(--color-citron);
-	width: 300px;
-	height: 300px;
-	top: 5%;
-	right: -20%;
+@media screen and (min-width: 768px){
+	.circle {
+		/* clip-path: circle(50% at 80%); */
+		background: var(--color-teal-bright);
+		border-radius: 100%;
+		position: absolute;
+		border: 50px solid var(--color-magenta);
+		width: 500px;
+		height: 500px;
+		top: -20%;
+		right: -30%;
+		/* z-index: -1; */
+	}
+	.circle-small {
+		background-color: var(--color-teal-dull);
+		border-radius: 100%;
+		position: absolute;	
+		border: 50px solid var(--color-citron);
+		width: 300px;
+		height: 300px;
+		top: 5%;
+		right: -20%;
+	}
 }
 
 .icon-list--centered {
@@ -431,6 +432,48 @@ header img {
 }
 .post-metadata time {
 	margin-right: 1em;
+}
+
+
+			.subscribe-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.subscribe-form form {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.subscribe-form button {
+    padding: 0.5rem 1rem;
+}
+
+.subscribe-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#statusMessage {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+#statusMessage.success {
+    color: green;
+}
+
+#statusMessage.error {
+    color: red;
 }</style>
 		
 	</head>
@@ -469,18 +512,20 @@ header img {
 		</main>
 
 		<footer>
-			<h2 id="join-the-alliance">
-				<span>Join</span> the alliance
-			</h2>
-			<form class="contact">
-				<label>
-					<input type="text" placeholder="placeholder for email">
-				</label>
-				<button type="submit">Submit</button>
-			</form>
+			<div class="container subscribe-form">
+				<h3 id="stay-updated">Stay Updated</h3>
+				<p>Subscribe to our newsletter for updates on our latest projects and initiatives.</p>
+				<form id="subscribeForm">
+					<input type="email" id="email" placeholder="Enter your email" required="">
+					<button type="submit">Subscribe</button>
+				</form>
+				<div id="statusMessage"></div>
+			</div>
+			
 		</footer>
 
-		<!-- This page `/tags/second-tag/` was built on 2025-09-25T20:33:37.446Z -->
+		<!-- This page `/tags/second-tag/` was built on 2025-10-08T20:12:51.485Z -->
 		<script type="module" src="/eleventy-base-blog"></script>
+		<script src="/eleventy-base-blog/js/subscribe.js"></script>
 	</body>
 </html>
