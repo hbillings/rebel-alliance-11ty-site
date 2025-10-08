@@ -40,11 +40,12 @@
 
 	--syntax-tab-size: 2;
 
-	--border-radius: 2rem;
-	--base-font-size: 1rem; /* 16px */
-	--font-size-large: 45px; /* 18px */
-	--font-size-xlarge: 80px;
-	--font-size-xxlarge: 110px; 
+	--border-radius: 4rem;
+	--base-font-size: 30px; /* 16px */
+	--font-size-medium: 30px;
+	--font-size-large: 35px; /* 18px */
+	--font-size-xlarge: 55px;
+	--font-size-xxlarge: 90px; 
 	--font-size-small: 0.875rem; /* 14px */
 }
 
@@ -82,7 +83,7 @@ body {
 	/* display: grid; */
 	/* max-width: 40em; */
 	margin: auto;
-	margin-bottom: 3rem;
+	margin-bottom: 8rem;
 }
 
 .container-grid {
@@ -152,6 +153,7 @@ h3 {
 h2 {
 	font-size: var(--font-size-xxlarge);
 	margin-bottom: 0.5rem;
+	line-height: 1.1;
 }
 
 h3 {
@@ -164,9 +166,13 @@ p:last-child {
 p {
 	line-height: 1.2;
 	font-weight: 100;
-	font-size: var(--font-size-large);
+	font-size: var(--font-size-medium);
 	/* todo: change max-width value to clamp when I can look up syntax */
-	max-width: 65%; 
+	max-width: 65%;
+	&.lede {
+		font-size: var(--font-size-large);
+	}
+
 }
 
 li {
@@ -255,12 +261,13 @@ button,
 .button {
 	background-color: var(--color-citron);
 	color: var(--color-gray-90);
-	padding: 0.5rem 1rem;
+	padding: 1.5rem 2rem;
 	text-transform: uppercase;
 	border-radius: var(--border-radius);
 	border: 0;
 	box-shadow: none;
-	font-weight: 500;
+	font-weight: 700;
+	font-size: var(--base-font-size);
 	&:hover, 
 	&:active {
 		background-color: var(--color-teal-bright);
@@ -551,7 +558,7 @@ header img {
 			
 		</footer>
 
-		<!-- This page `/tags/another-tag/` was built on 2025-10-08T21:16:41.906Z -->
+		<!-- This page `/tags/another-tag/` was built on 2025-10-08T21:26:45.821Z -->
 		<script type="module" src="/eleventy-base-blog"></script>
 		<script src="/eleventy-base-blog/js/subscribe.js"></script>
 	</body>
