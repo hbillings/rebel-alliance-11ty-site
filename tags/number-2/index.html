@@ -42,9 +42,9 @@
 
 	--border-radius: 2rem;
 	--base-font-size: 1rem; /* 16px */
-	--font-size-large: 1.125rem; /* 18px */
-	--font-size-xlarge: 1.5rem; 
-	--font-size-xxlarge: 2.5rem;
+	--font-size-large: 45px; /* 18px */
+	--font-size-xlarge: 80px;
+	--font-size-xxlarge: 110px; 
 	--font-size-small: 0.875rem; /* 14px */
 }
 
@@ -154,15 +154,19 @@ h2 {
 	margin-bottom: 0.5rem;
 }
 
+h3 {
+	font-size: var(--font-size-xlarge);
+}
+
 p:last-child {
 	margin-bottom: 0;
 }
 p {
-	line-height: 1.5;
+	line-height: 1.2;
 	font-weight: 100;
-	font-size: var(--base-font-size);
+	font-size: var(--font-size-large);
 	/* todo: change max-width value to clamp when I can look up syntax */
-	max-width: 30em; 
+	max-width: 65%; 
 }
 
 li {
@@ -547,7 +551,7 @@ header img {
 			
 		</footer>
 
-		<!-- This page `/tags/number-2/` was built on 2025-10-08T21:08:00.097Z -->
+		<!-- This page `/tags/number-2/` was built on 2025-10-08T21:16:41.972Z -->
 		<script type="module" src="/eleventy-base-blog"></script>
 		<script src="/eleventy-base-blog/js/subscribe.js"></script>
 	</body>
