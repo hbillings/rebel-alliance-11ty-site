@@ -28,7 +28,10 @@
 		<style>/* This is an arbitrary CSS string added to the bundle */</style>
 
 		{#- Add the contents of a file to the bundle #}
-		<style>{% include "css/index.css" %}</style>
+		<style>
+			{% include "css/index.css" %}
+			{% include "css/subscribe.css" %}
+		</style>
 
 		{#- Or you can add from node_modules #}
 		{# <style>{% include "node_modules/something.css" %}</style> #}
@@ -68,7 +71,16 @@
 		</main>
 
 		<footer>
-			<h2>
+			<div class="container subscribe-form">
+				<h3>Stay Updated</h3>
+				<p>Subscribe to our newsletter for updates on our latest projects and initiatives.</p>
+				<form id="subscribeForm">
+					<input type="email" id="email" placeholder="Enter your email" required>
+					<button type="submit">Subscribe</button>
+				</form>
+				<div id="statusMessage"></div>
+			</div>
+			{# <h2>
 				<span>Join</span> the alliance
 			</h2>
 			<form class="contact">
@@ -76,10 +88,11 @@
 					<input type="text" placeholder="placeholder for email">
 				</label>
 				<button type="submit">Submit</button>
-			</form>
+			</form> #}
 		</footer>
 
 		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
 		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+		<script src="/js/subscribe.js"></script>
 	</body>
 </html>

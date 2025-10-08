@@ -276,28 +276,29 @@ header img {
 }
 
 /* Homepage centered list */
-
-.circle {
-	/* clip-path: circle(50% at 80%); */
-	background: var(--color-teal-bright);
-	border-radius: 100%;
-	position: absolute;
-	border: 50px solid var(--color-magenta);
-	width: 500px;
-	height: 500px;
-	top: -20%;
-	right: -30%;
-	/* z-index: -1; */
-}
-.circle-small {
-	background-color: var(--color-teal-dull);
-	border-radius: 100%;
-	position: absolute;	
-	border: 50px solid var(--color-citron);
-	width: 300px;
-	height: 300px;
-	top: 5%;
-	right: -20%;
+@media screen and (min-width: 768px){
+	.circle {
+		/* clip-path: circle(50% at 80%); */
+		background: var(--color-teal-bright);
+		border-radius: 100%;
+		position: absolute;
+		border: 50px solid var(--color-magenta);
+		width: 500px;
+		height: 500px;
+		top: -20%;
+		right: -30%;
+		/* z-index: -1; */
+	}
+	.circle-small {
+		background-color: var(--color-teal-dull);
+		border-radius: 100%;
+		position: absolute;	
+		border: 50px solid var(--color-citron);
+		width: 300px;
+		height: 300px;
+		top: 5%;
+		right: -20%;
+	}
 }
 
 .icon-list--centered {
