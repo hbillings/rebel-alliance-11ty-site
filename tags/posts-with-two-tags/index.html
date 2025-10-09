@@ -41,12 +41,12 @@
 	--syntax-tab-size: 2;
 
 	--border-radius: 4rem;
-	--base-font-size: 30px; /* 16px */
-	--font-size-medium: 30px;
-	--font-size-large: 35px; /* 18px */
-	--font-size-xlarge: 55px;
-	--font-size-xxlarge: 90px; 
-	--font-size-small: 0.875rem; /* 14px */
+	/* --base-font-size-max: 30px; used for REM calculation */
+	--base-font-size: 16px; /* used for REM calculation */
+	--font-size-medium: clamp(1rem, 2vw + 1rem, 1.875rem); /* large: 30px; small: 16px */
+	--font-size-large: clamp(1.2rem, 2vw + 1rem, 2.188rem); /* large: 35px */
+	--font-size-xlarge: clamp(2rem, 2vw + 1rem, 3.438rem); /* large: 55px */
+	--font-size-xxlarge: clamp(3rem, 2vw + 1rem, 5.625rem); /* large: 90px */
 }
 
 /* Global stylesheet */
@@ -67,14 +67,13 @@ body {
 	font-weight: light;
 	color: var(--text-color);
 	background-color: var(--background-color);
+	/* font-size: var(--base-font-size-max); */
 }
 html {
 	overflow-y: scroll;
 }
 
 body {
-	/* max-width: 45em; */
-	max-width: 95vw;
 	position: relative;
 	overflow: hidden;
 }
@@ -99,8 +98,17 @@ body {
 main,
 header,
 footer {
-	margin-left: 6rem;
-	padding: 1rem;
+	margin-left: 2rem;
+	padding-right: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+	main,
+	header,
+	footer {
+		margin-left: 6rem;
+		padding-right: 6rem;
+	}
 }
 
 main :first-child {
@@ -167,8 +175,7 @@ p {
 	line-height: 1.2;
 	font-weight: 100;
 	font-size: var(--font-size-medium);
-	/* todo: change max-width value to clamp when I can look up syntax */
-	max-width: 65%;
+	max-width: clamp(65%, 60rem, 100%);
 	&.lede {
 		font-size: var(--font-size-large);
 	}
@@ -267,24 +274,26 @@ button,
 	border: 0;
 	box-shadow: none;
 	font-weight: 700;
-	font-size: var(--base-font-size);
+	font-size: var(--font-size-medium);
 	&:hover, 
 	&:active {
 		background-color: var(--color-teal-bright);
 		/* Todo: little fade between colors as transition when I can look up syntax */
 	}
-	@media screen and (max-width: 420px) {
+	@media screen and (max-width: 768px) {
 		width: 100%;
 	}
 }
 
 .contact {
-	/* display: grid; */
+	max-width: 950px;
 	input {
-		padding: 0.75rem 1rem;
+		padding: 0.75rem 1rem 0.75rem 2rem;
 		border-radius: 100px 0 0 100px;
 		border: none;
 		width: 100%;
+		height: 100%;
+		font-size: var(--font-size-medium);
 	}
 	button {
 		padding: 0.75rem 1rem;
@@ -299,7 +308,7 @@ header {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1em;
+	padding: 2rem 1rem 4rem 0;
 }
 
 header img {
@@ -335,37 +344,46 @@ header img {
 }
 
 .icon-list--centered {
-	/* max-width: 30em; */
 	margin: auto;
-	padding-left: 6rem;
 	list-style: none;
+	padding: 0;
 	li {
 		margin-bottom: 2rem;
 		position: relative;
 		&:before {
 			content: "";
 			display: inline-block;
-			width: 4.5rem;
-			height: 4.5rem;
+			width: 9.5rem;
+			height: 9.5rem;
 			background-image: url('img/logo-icon.png');
 			background-size: contain;
 			background-repeat: no-repeat;
-			margin-right: 0.5rem;
-			position: absolute;
-			left: -2.5rem;
-			@media screen and (min-width: 768px){
-				left: -6rem;
-			}
-			
+			position: relative;
+			margin: auto;
+			display: block;
 		}
 	}
 	h3 {
+		margin-top: 1.5rem;
 		margin-bottom: 0.5rem;
-		padding-left: 3.5rem;;
 	}
-	p {
-		margin-top: 0;
-		padding-left: 3.5rem;
+	@media screen and (min-width: 768px){
+		padding-left: 6rem;
+		li:before {
+			width: 6.5rem;
+			height: 6.5rem;
+			margin-right: 0.5rem;
+			position: absolute;
+			left: -5.5rem;
+		}
+
+		h3 {
+			padding-left: 3.5rem;
+		}
+		p {
+			margin-top: 0;
+			padding-left: 3.5rem;
+		}
 	}
 }
 
@@ -558,7 +576,7 @@ header img {
 			
 		</footer>
 
-		<!-- This page `/tags/posts-with-two-tags/` was built on 2025-10-08T21:26:45.895Z -->
+		<!-- This page `/tags/posts-with-two-tags/` was built on 2025-10-09T17:42:53.865Z -->
 		<script type="module" src="/eleventy-base-blog"></script>
 		<script src="/eleventy-base-blog/js/subscribe.js"></script>
 	</body>
