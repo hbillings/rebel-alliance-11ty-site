@@ -30,7 +30,7 @@
 	--color-citron: #E7F33B;
 	--color-magenta: #C100F3;
 
-	--background-color: var(--color-gray-90);
+	--background-color: #242424;
 
 	--text-color: var(--color-white);
 	/* todo: check contrast */
@@ -43,6 +43,7 @@
 	--border-radius: 4rem;
 	/* --base-font-size-max: 30px; used for REM calculation */
 	--base-font-size: 16px; /* used for REM calculation */
+	--font-size-small: clamp(0.8rem, 2vw + 1rem, 1.5rem); /* large: 24px; small: 13px */
 	--font-size-medium: clamp(1rem, 2vw + 1rem, 1.875rem); /* large: 30px; small: 16px */
 	--font-size-large: clamp(1.2rem, 2vw + 1rem, 2.188rem); /* large: 35px */
 	--font-size-xlarge: clamp(2rem, 2vw + 1rem, 3.438rem); /* large: 55px */
@@ -75,7 +76,7 @@ html {
 
 body {
 	position: relative;
-	overflow: hidden;
+	overflow: clip;
 }
 
 .container {
@@ -107,7 +108,10 @@ footer {
 	header,
 	footer {
 		margin-left: 6rem;
-		padding-right: 6rem;
+		padding-right: 20rem;
+		@media screen and (min-width: 1024px) {
+			padding-right: 30rem;
+		}
 	}
 }
 
@@ -268,13 +272,14 @@ button,
 .button {
 	background-color: var(--color-citron);
 	color: var(--color-gray-90);
-	padding: 1.5rem 2rem;
+	padding: 1.3rem 1.9rem;
 	text-transform: uppercase;
 	border-radius: var(--border-radius);
 	border: 0;
 	box-shadow: none;
 	font-weight: 700;
-	font-size: var(--font-size-medium);
+	font-size: var(--font-size-small);
+	border: 2px solid white;
 	&:hover, 
 	&:active {
 		background-color: var(--color-teal-bright);
@@ -293,7 +298,10 @@ button,
 		border: none;
 		width: 100%;
 		height: 100%;
-		font-size: var(--font-size-medium);
+		font-size: var(--font-size-small);
+		&::placeholder {
+			color: var(--color-gray-90);;
+		}
 	}
 	button {
 		padding: 0.75rem 1rem;
@@ -308,38 +316,89 @@ header {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 2rem 1rem 4rem 0;
+	padding: 2rem 1rem 2rem 0;
+	margin-bottom: 2rem;
+	position: sticky;
+	top: 0;
+	background: var(--background-color);
 }
 
 header img {
+	max-width: 55%;
 	@media screen and (min-width: 768px){
 		max-width: 40%;
 	}
 }
 
 /* Homepage centered list */
+.circle-container {
+	position: absolute;
+	top: -10%;
+	right: -5%;
+
+	@media screen and (max-width: 1024px){
+		top: -12%;
+		right: -15%;
+	}
+
+	@media screen and (max-width: 768px){
+		top: -6%;
+		right: -16%;
+	}
+
+	@media screen and (max-width: 580px){
+		top: -3%;
+		right: -10%;
+	}
+
+	@media screen and (max-width: 480px){
+		top: -3%;
+		right: -15%;
+	}
+
+}
+
+.circle-small {
+	/* background-color: var(--color-teal-dull); */
+	/* border: 50px solid var(--color-citron); */
+	background: linear-gradient(to top, var(--color-teal-dull), var(--color-citron));
+	border-radius: 100%;
+	width: 400px;
+	height: 400px;
+	@media screen and (min-width: 769px){
+		position: absolute;	
+		top: 65%;
+		right: -10%;
+	}
+	@media screen and (max-width: 768px) {
+		top: 0;
+		right: 0;
+		width: 350px;
+		height: 350px;
+	}
+	@media screen and (max-width: 580px) {
+		width: 250px;
+		height: 250px;
+	}
+	@media screen and (max-width: 480px){
+		width: 200px;
+		height: 200px;
+	}
+}
+
 @media screen and (min-width: 768px){
 	.circle {
 		/* clip-path: circle(50% at 80%); */
-		background: var(--color-teal-bright);
+		/* background: var(--color-teal-bright); */
+		/* border: 50px solid var(--color-magenta); */
 		border-radius: 100%;
-		position: absolute;
-		border: 50px solid var(--color-magenta);
-		width: 500px;
-		height: 500px;
-		top: -10%;
-		right: -10%;
+		background: linear-gradient(to left, var(--color-teal-bright), var(--color-magenta));
+		/* position: absolute; */
+		width: 600px;
+		height: 600px;
+		/* top: -10%; */
+		/* right: -5%; */
 		/* z-index: -1; */
-	}
-	.circle-small {
-		background-color: var(--color-teal-dull);
-		border-radius: 100%;
-		position: absolute;	
-		border: 50px solid var(--color-citron);
-		width: 300px;
-		height: 300px;
-		top: 5%;
-		right: -5%;
 	}
 }
 
@@ -578,7 +637,7 @@ This is compatible with:
 			
 		</footer>
 
-		<!-- This page `/404.html` was built on 2025-10-09T21:23:23.923Z -->
+		<!-- This page `/404.html` was built on 2025-10-29T12:10:26.914Z -->
 		<script type="module" src="/rebel-alliance-11ty-site"></script>
 		<script src="/rebel-alliance-11ty-site/js/subscribe.js"></script>
 	</body>
