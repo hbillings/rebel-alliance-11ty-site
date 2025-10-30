@@ -4,10 +4,12 @@
 }
 
 .subscribe-form form {
-    display: flex;
-    gap: 0.3rem;
-    justify-content: center;
     margin-top: 1rem;
+    @media screen and (min-width: 768px){
+        display: flex;
+        gap: 0.3rem;
+        justify-content: center;
+    }
 }
 
 .subscribe-form label {
